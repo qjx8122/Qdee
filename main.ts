@@ -717,6 +717,30 @@ namespace qdee {
     }
     
     /**
+    *	Set the speed of the number 1 motor and number 2 motor, range of -30~30, that can control the tank to go advance or turn of.
+    */
+    //% weight=90 blockId=qdee_setEncoderMotorSpeed block="Set encoder motor1 speed(-30~30)|%speed1|and encoder motor2|speed %speed2"
+    //% speed1.min=-30 speed1.max=30
+    //% speed2.min=-30 speed2.max=30
+    //% subcategory=Control
+    export function qdee_setEncoderMotorSpeed(speed1: number, speed2: number) {
+        if (speed1 > 30 || speed1 < -30 || speed2 > 30 || speed2 < -30) {
+            return;
+        }
+        speed1 = speed1 * -1;
+        speed2 = speed2 * -1;
+        let buf = pins.createBuffer(7);
+        buf[0] = 0x55;
+        buf[1] = 0x55;
+        buf[2] = 0x05;
+        buf[3] = 0x37;//cmd type
+        buf[4] = 0x02;
+        buf[5] = speed1;
+        buf[6] = speed2;
+        serial.writeBuffer(buf);
+    }
+
+    /**
    * Set fan speed
    * @param speed the speed of the fan in -100~100. eg: 80
    */
