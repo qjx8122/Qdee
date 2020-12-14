@@ -781,7 +781,7 @@ namespace qdee {
         distance2 = distance2 * -1;
     }
     
-    function qdee_getEncoder()  : [number, number]{
+    function qdee_getEncoder():number[]{
         let buf = pins.createBuffer(5);
         buf[0] = 0x55;
         buf[1] = 0x55;
@@ -795,11 +795,13 @@ namespace qdee {
         if (charStr.charAt(0).compare("E") == 0 && charStr.charAt(19).compare("$") == 0) {
             let encoder1: number = strToNumber(charStr.substr(3, 10));
             let encoder2: number = strToNumber(charStr.substr(11, 18));
-            let arr: [number, number];
-            arr = [encoder1, encoder2];
+            let arr: number[] = [encoder1, encoder2];
             return arr;
         }
+        let arr: number[] = [0];
+        return arr;
     }
+
 
     /**
    * Set fan speed
