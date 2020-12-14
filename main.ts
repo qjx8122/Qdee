@@ -723,11 +723,12 @@ namespace qdee {
     //% type.min=0 type.max=2
     //% subcategory=Control
     export function qdee_setMotorType(type: number) {
-        let buf = pins.createBuffer(5);
+        let buf = pins.createBuffer(6);
         buf[0] = 0x55;
         buf[1] = 0x55;
-        buf[2] = 0x03;
+        buf[2] = 0x04;
         buf[3] = 0x37;//cmd type
+        buf[4] = 0x01;
         buf[4] = type;
         serial.writeBuffer(buf);
     }
