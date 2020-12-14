@@ -779,7 +779,7 @@ namespace qdee {
         }
         distance1 = distance1 * -1;
         distance2 = distance2 * -1;
-    
+    }
     
     function qdee_getEncoder()  : [number, number]{
         let buf = pins.createBuffer(5);
