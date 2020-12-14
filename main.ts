@@ -773,14 +773,25 @@ namespace qdee {
     /**
     *	Set the speed of the number 1 motor and number 2 motor, range of -30~30, that can control the tank to go advance or turn of.
     */
-    //% weight=90 blockId=qdee_setEncoderMotorSpeed block="Set encoder motor1 speed(-30~30)|%speed1|and encoder motor2|speed %speed2"
+    //% weight=90 blockId=qdee_Encoder block="Set encoder  distance(-30~30)|%distance|and speed|%speed|"
     //% subcategory=Control
-    export function qdee_Encoder(distance1: number, distance2: number) {
-        if (distance1 > 30 || distance1 < -30 || distance2 > 30 || distance2 < -30) {
+    export function qdee_Encoder(distance: number, speed: number) {
+        if (distance > 3000 || distance < -3000 || speed > 30 || speed < -30) {
             return;
         }
-        distance1 = distance1 * -1;
-        distance2 = distance2 * -1;
+        let direction: number;
+        let target: number[];
+        let now: number[];
+        if (distance > 0) direction = 1;
+        else direction = -1;
+        target = qdee_getEncoder();
+        now = target;
+        target[0] += distance;
+        while ((target[0] - now[0]) * direction > 10) {
+            now = qdee_getEncoder();
+            qdee_setEncoderMotorSpeed(speed*direction*-1,speed*direction*-1);
+        }
+        
     }
     
     function qdee_getEncoder():number[]{
