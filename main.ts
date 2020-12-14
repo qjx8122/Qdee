@@ -71,11 +71,11 @@ namespace qdee {
     }
 
     export enum motorType {
-        //% block="0"
+        //% block="common"
         Type0 = 0x00,
-        //% block="1"
+        //% block="TT"
         Type1 = 0x01,
-        //% block="2"
+        //% block="N20"
         Type2 = 0x02,
     }
 
@@ -728,7 +728,7 @@ namespace qdee {
     /**
     *	Set the speed of the number 1 motor and number 2 motor, range of -30~30, that can control the tank to go advance or turn of.
     */
-    //% weight=90 blockId=qdee_setMotorType block="Set  motor1 Type(0~2)|type %type|"
+    //% weight=90 blockId=qdee_setMotorType block="Set motor Type(0~2)|type %type|"
     //% type.min=0 type.max=2
     //% subcategory=Control
     export function qdee_setMotorType(type: motorType) {
@@ -742,6 +742,8 @@ namespace qdee {
         buf[5] = type;
         serial.writeBuffer(buf);
     }
+
+
 
 
     /**
