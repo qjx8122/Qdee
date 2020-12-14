@@ -756,6 +756,7 @@ namespace qdee {
         serial.writeBuffer(buf);
     }
 
+    
     /**
    * Set fan speed
    * @param speed the speed of the fan in -100~100. eg: 80
