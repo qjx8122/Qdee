@@ -70,6 +70,15 @@ namespace qdee {
         port2 = 0x02,
     }
 
+    export enum motorType {
+        //% block="0"
+        Type0 = 0x00,
+        //% block="1"
+        Type1 = 0x01,
+        //% block="2"
+        Type2 = 0x02,
+    }
+
     export enum Servos {
         //% block="servo 1"
         Servo1 = 0x01,
@@ -719,17 +728,18 @@ namespace qdee {
     /**
     *	Set the speed of the number 1 motor and number 2 motor, range of -30~30, that can control the tank to go advance or turn of.
     */
-    //% weight=90 blockId=qdee_setMotorType block="Set  motor1 Type(0~2)|%type|
+    //% weight=90 blockId=qdee_setMotorType block="Set  motor1 Type(0~2)|type %type|
     //% type.min=0 type.max=2
     //% subcategory=Control
-    export function qdee_setMotorType(type: number) {
+    export function qdee_setMotorType(type: motorType) {
+
         let buf = pins.createBuffer(6);
         buf[0] = 0x55;
         buf[1] = 0x55;
         buf[2] = 0x04;
         buf[3] = 0x37;//cmd type
         buf[4] = 0x01;
-        buf[4] = type;
+        buf[5] = type;
         serial.writeBuffer(buf);
     }
 
@@ -758,12 +768,20 @@ namespace qdee {
         serial.writeBuffer(buf);
     }
 
-    function qdee_getEncoder(distance1: number, distance2: number) {
+    /**
+    *	Set the speed of the number 1 motor and number 2 motor, range of -30~30, that can control the tank to go advance or turn of.
+    */
+    //% weight=90 blockId=qdee_setEncoderMotorSpeed block="Set encoder motor1 speed(-30~30)|%speed1|and encoder motor2|speed %speed2"
+    //% subcategory=Control
+    export function qdee_Encoder(distance1: number, distance2: number) {
         if (distance1 > 30 || distance1 < -30 || distance2 > 30 || distance2 < -30) {
             return;
         }
         distance1 = distance1 * -1;
         distance2 = distance2 * -1;
+    
+    
+    function qdee_getEncoder()  : [number, number]{
         let buf = pins.createBuffer(5);
         buf[0] = 0x55;
         buf[1] = 0x55;
@@ -777,7 +795,9 @@ namespace qdee {
         if (charStr.charAt(0).compare("E") == 0 && charStr.charAt(19).compare("$") == 0) {
             let encoder1: number = strToNumber(charStr.substr(3, 10));
             let encoder2: number = strToNumber(charStr.substr(11, 18));
-            return encoder1, encoder2;
+            let arr: [number, number];
+            arr = [encoder1, encoder2];
+            return arr;
         }
     }
 
