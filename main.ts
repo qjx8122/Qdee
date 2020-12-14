@@ -758,6 +758,28 @@ namespace qdee {
         serial.writeBuffer(buf);
     }
 
+    function qdee_getEncoder(distance1: number, distance2: number) {
+        if (distance1 > 30 || distance1 < -30 || distance2 > 30 || distance2 < -30) {
+            return;
+        }
+        distance1 = distance1 * -1;
+        distance2 = distance2 * -1;
+        let buf = pins.createBuffer(5);
+        buf[0] = 0x55;
+        buf[1] = 0x55;
+        buf[2] = 0x03;
+        buf[3] = 0x37;//cmd type
+        buf[4] = 0x03;
+        serial.writeBuffer(buf);
+        basic.pause(200);
+        let charStr: string = serial.readString();
+        //EMM0000000AFFFFFFFD$
+        if (charStr.charAt(0).compare("E") == 0 && charStr.charAt(19).compare("$") == 0) {
+            let encoder1: number = strToNumber(charStr.substr(3, 10));
+            let encoder2: number = strToNumber(charStr.substr(11, 18));
+            return encoder1, encoder2;
+        }
+    }
 
     /**
    * Set fan speed
