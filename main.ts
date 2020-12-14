@@ -715,7 +715,22 @@ namespace qdee {
         buf[5] = speed1;
         serial.writeBuffer(buf);
     }
-    
+
+    /**
+    *	Set the speed of the number 1 motor and number 2 motor, range of -30~30, that can control the tank to go advance or turn of.
+    */
+    //% weight=90 blockId=qdee_EncoderMotorInit block="qdee_EncoderMotorInit"
+    //% subcategory=Control
+    export function qdee_EncoderMotorInit() {
+        let buf = pins.createBuffer(5);
+        buf[0] = 0x55;
+        buf[1] = 0x55;
+        buf[2] = 0x03;
+        buf[3] = 0x37;//cmd type
+        buf[4] = 0x01;
+        serial.writeBuffer(buf);
+    }
+
     /**
     *	Set the speed of the number 1 motor and number 2 motor, range of -30~30, that can control the tank to go advance or turn of.
     */
