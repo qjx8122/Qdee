@@ -728,7 +728,7 @@ namespace qdee {
     /**
     *	Set the speed of the number 1 motor and number 2 motor, range of -30~30, that can control the tank to go advance or turn of.
     */
-    //% weight=90 blockId=qdee_setMotorType block="Set  motor1 Type(0~2)|type %type|
+    //% weight=90 blockId=qdee_setMotorType block="Set  motor1 Type(0~2)|type %type|"
     //% type.min=0 type.max=2
     //% subcategory=Control
     export function qdee_setMotorType(type: motorType) {
