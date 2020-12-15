@@ -71,11 +71,11 @@ namespace qdee {
     }
 
     export enum motorType {
-        //% block="common"
+        //% block="0"
         Type0 = 0x00,
-        //% block="TT"
+        //% block="1"
         Type1 = 0x01,
-        //% block="N20"
+        //% block="2"
         Type2 = 0x02,
     }
 
