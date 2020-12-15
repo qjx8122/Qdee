@@ -745,8 +745,6 @@ namespace qdee {
     }
 
 
-
-
     /**
     *	Set the speed of the number 1 motor and number 2 motor, range of -30~30, that can control the tank to go advance or turn of.
     */
