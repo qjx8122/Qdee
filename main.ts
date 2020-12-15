@@ -393,6 +393,11 @@ namespace qdee {
     let cntIr = 0;
     let adress = 0;
     let sendFlag = false;
+
+    let right_encoder: number = 0;
+    let left_encoder: number = 0;
+    let encoder_flag = false;
+
     /**
     * Get the handle command.
     */
@@ -497,7 +502,13 @@ namespace qdee {
                     PB10 = arg8Int;
                 }    
 
-        }
+            }
+            else if (cmd.charAt(0).compare("E") == 0 && cmd.length == 20) {
+                right_encoder = strToNumber(charStr.substr(3, 10));
+                left_encoder = strToNumber(charStr.substr(11, 18));
+                encoder_flag = true;
+            }
+
         if (cmd.compare("IROK") == 0) {
                 music.playTone(988, music.beat(BeatFraction.Quarter));
         }
@@ -803,16 +814,11 @@ namespace qdee {
         buf[4] = 0x03;
         serial.writeBuffer(buf);
         basic.pause(200);
-        let charStr: string = serial.readString();
         //EMM0000000AFFFFFFFD$
-        if (charStr.charAt(0).compare("E") == 0 && charStr.charAt(19).compare("$") == 0) {
-            let encoder1: number = strToNumber(charStr.substr(3, 10));
-            let encoder2: number = strToNumber(charStr.substr(11, 18));
-            let arr: number[] = [encoder1, encoder2];
+        if (encoder_flag) {
+            let arr: number[] = [right_encoder, left_encoder];
             return arr;
         }
-        let arr: number[] = [0];
-        return arr;
     }
 
 
