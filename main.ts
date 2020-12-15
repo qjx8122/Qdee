@@ -393,11 +393,6 @@ namespace qdee {
     let cntIr = 0;
     let adress = 0;
     let sendFlag = false;
-
-    let right_encoder: number = 0;
-    let left_encoder: number = 0;
-    let encoder_flag = false;
-
     /**
     * Get the handle command.
     */
@@ -502,11 +497,6 @@ namespace qdee {
                     PB10 = arg8Int;
                 }    
 
-            }
-            else if (cmd.charAt(0).compare("E") == 0 && cmd.length == 20) {
-                right_encoder = strToNumber(charStr.substr(3, 10));
-                left_encoder = strToNumber(charStr.substr(11, 18));
-                encoder_flag = true;
             }
 
         if (cmd.compare("IROK") == 0) {
@@ -779,46 +769,6 @@ namespace qdee {
         buf[5] = speed1;
         buf[6] = speed2;
         serial.writeBuffer(buf);
-    }
-
-    /**
-    *	Set the speed of the number 1 motor and number 2 motor, range of -30~30, that can control the tank to go advance or turn of.
-    */
-    //% weight=90 blockId=qdee_Encoder block="Set encoder  distance(-30~30)|%distance|and speed|%speed|"
-    //% subcategory=Control
-    export function qdee_Encoder(distance: number, speed: number) {
-        if (distance > 3000 || distance < -3000 || speed > 30 || speed < -30) {
-            return;
-        }
-        let direction: number;
-        let target: number[];
-        let now: number[];
-        if (distance > 0) direction = 1;
-        else direction = -1;
-        target = qdee_getEncoder();
-        now = target;
-        target[0] += distance;
-        while ((target[0] - now[0]) * direction > 10) {
-            now = qdee_getEncoder();
-            qdee_setEncoderMotorSpeed(speed*direction*-1,speed*direction*-1);
-        }
-        
-    }
-    
-    function qdee_getEncoder():number[]{
-        let buf = pins.createBuffer(5);
-        buf[0] = 0x55;
-        buf[1] = 0x55;
-        buf[2] = 0x03;
-        buf[3] = 0x37;//cmd type
-        buf[4] = 0x03;
-        serial.writeBuffer(buf);
-        basic.pause(200);
-        //EMM0000000AFFFFFFFD$
-        if (encoder_flag) {
-            let arr: number[] = [right_encoder, left_encoder];
-            return arr;
-        }
     }
 
 
