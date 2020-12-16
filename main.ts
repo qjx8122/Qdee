@@ -1806,21 +1806,5 @@ namespace qdee {
         lhRGBLightBelt.singleSetBeltPixelColor(lightoffset, rgb);
     }
     
-    /**
-     * Display the colored lights, and set the color of the colored lights to match the use. After setting the color of the colored lights, the color of the lights must be displayed.
-     */
-    //% weight=12 blockId=qdee_belt_showLight block="Show light belt"
-    //% subcategory=Coloured_lights    
-    export function qdee_belt_showLight() {
-        lhRGBLightBelt.show();
-    }
 
-    /**
-     * Clear the color of the colored lights and turn off the lights.
-     */
-    //% weight=10 blockGap=50 blockId=qdee_belt_clearLight block="Clear light belt"
-    //% subcategory=Coloured_lights    
-    export function qdee_belt_clearLight() {
-        lhRGBLightBelt.clear();
-    }
 }
