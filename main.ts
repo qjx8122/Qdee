@@ -316,31 +316,6 @@ namespace qdee {
         control.waitMicros(100);
     }
    
-    /**
-	 * Initialize Light belt
-	 */
-    //% weight=98 blockId=qdee_belt_initRGBLight block="Initialize light belt at port %port"
-    //% subcategory=Init
-    export function qdee_belt_initRGBLight(port: lightbeltPort) {
-        switch (port) {
-            case lightbeltPort.port1:
-                if (!lhRGBLightBelt) {
-                    lhRGBLightBelt = QdeeRGBLight.create(DigitalPin.P1, 30, QdeeRGBPixelMode.RGB);
-                }
-                break;
-            case lightbeltPort.port2:
-                if (!lhRGBLightBelt) {
-                    lhRGBLightBelt = QdeeRGBLight.create(DigitalPin.P13, 30, QdeeRGBPixelMode.RGB);
-                }
-                break;
-            case lightbeltPort.port3:
-                if (!lhRGBLightBelt) {
-                    lhRGBLightBelt = QdeeRGBLight.create(DigitalPin.P16, 30, QdeeRGBPixelMode.RGB);
-                }
-                break;
-        }
-        qdee_clearLight();
-    }
 
     function sendVersionCmd() {
         let buf = pins.createBuffer(4);
@@ -943,17 +918,6 @@ namespace qdee {
     //% subcategory=IR
     export function onQdee_remote_ir_longpressed(code: IRKEY, body: Action) {
         control.onEvent(MESSAGE_HEAD_LONG, code, body);
-    }
-
-    /**
-     * Do someting when remote-control stop send
-     * @param code the ir key button that needs to be pressed
-     * @param body code to run when event is raised
-     */
-    //% weight=76 blockId=onQdee_remote_no_ir block="on remote-control stop send"
-    //% subcategory=IR    
-    export function onQdee_remote_no_ir(body: Action) {
-        control.onEvent(MESSAGE_HEAD_STOP, 0, body);
     }
 
     /**
