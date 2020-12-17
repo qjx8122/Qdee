@@ -56,13 +56,6 @@ namespace qdee {
         S1_IN_S2_IN = 0x03
     }
 
-    export enum colorSensorPort {
-        //% block="Port 4"
-        port4 = 0x04,
-        //% block="Port 9"
-        port9 = 0x09
-    }
-
     export enum fanPort {
         //% block="Port 1"
         port1 = 0x01,
@@ -93,40 +86,10 @@ namespace qdee {
         port2 = 0x02
     }
 
-    export enum lightbeltPort {
-        //% block="Port 1"
-        port1 = 0x01,
-        //% block="Port 2"
-        port2 = 0x02,
-        //% block="Port 3"
-        port3 = 0x03
-    }
 
     export enum busServoPort {
         //% block="Port 10"
         port10 = 0x0A
-    }
-
-    export enum knobPort {
-        //% block="Port 1"
-        port1 = 0x01,
-        //% block="Port 6"
-        port6 = 0x06,
-        //% block="Port 8"
-        port8 = 0x08
-    }
-
-    export enum touchKeyPort {
-        //% block="Port 1"
-        port1 = 0x01,
-        //% block="Port 2"
-        port2 = 0x02,
-        //% block="Port 3"
-        port3 = 0x03,
-        //% block="Port 6"
-        port6 = 0x06,
-        //% block="Port 8"
-        port8 = 0x08
     }
 
     export enum lineFollowPort {
@@ -332,21 +295,7 @@ namespace qdee {
     let volume: number = 0;
     let lhRGBLight: QdeeRGBLight.LHQdeeRGBLight;
 
-    let PA6 = 2;
-    let PA7 = 2;
-    let PB0 = 2;
-    let PB1 = 2;
-    let PB10 = 2;
-    let PB11 = 2;
-    let PC13 = 2;
-
-    let PA6_ad = 0;
-    let PA7_ad = 0;
-    let PB0_ad = 0;
-    let PB1_ad = 0;
-
     let MESSAGE_HEAD = 0xff;
-    let MESSAGE_IOT_HEAD = 0x102;
 
     let servo1Angle: number = 0xfff;
     let servo2Angle: number = 0xfff;
