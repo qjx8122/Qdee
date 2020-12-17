@@ -319,17 +319,9 @@ namespace qdee {
         if (index != -1) {
             let cmd: string = handleCmd.substr(0, index);
             if (cmd.charAt(0).compare("A") == 0 && cmd.length == 13) {
-                 let arg1Int: number = strToNumber(cmd.substr(1, 2));
-                 let arg2Int: number = strToNumber(cmd.substr(3, 2));
-                 let arg3Int: number = strToNumber(cmd.substr(5, 2));
-                 let arg4Int: number = strToNumber(cmd.substr(7, 2));
                  let arg5Int: number = strToNumber(cmd.substr(9, 2));
                  let arg6Int: number = strToNumber(cmd.substr(11, 2));
     
-                 PA6_ad = arg1Int;
-                 PA7_ad = arg2Int;
-                 PB0_ad = arg3Int;
-                 PB1_ad = arg4Int;   
     
                  if (arg5Int != -1)
                  {
@@ -341,29 +333,13 @@ namespace qdee {
                   volume = arg6Int;
                  }   
                 
-                PA6 = checkADPortValue(arg1Int);
-                PA7 = checkADPortValue(arg2Int);
-                PB0 = checkADPortValue(arg3Int);
-                PB1 = checkADPortValue(arg4Int);
             }
             else if (cmd.charAt(0).compare("B") == 0 && cmd.length == 16)
             {
-                let arg1Int: number = strToNumber(cmd.substr(1, 2));
-                let arg2Int: number = strToNumber(cmd.substr(3, 2));
-                let arg3Int: number = strToNumber(cmd.substr(5, 2));
-                let arg4Int: number = strToNumber(cmd.substr(7, 2));
                 let arg5Int: number = strToNumber(cmd.substr(9, 4));
                 let arg6Int: number = strToNumber(cmd.charAt(9));
                 let arg7Int: number = strToNumber(cmd.charAt(10));
                 let arg8Int: number = strToNumber(cmd.charAt(11));
-                PA6_ad = arg1Int;
-                PA7_ad = arg2Int;
-                PB0_ad = arg3Int;
-                PB1_ad = arg4Int;
-                PA6 = checkADPortValue(arg1Int);
-                PA7 = checkADPortValue(arg2Int);
-                PB0 = checkADPortValue(arg3Int);
-                PB1 = checkADPortValue(arg4Int);
                 if (arg5Int != -1) {
                     let high = (arg5Int >> 8) & 0xff;
                     let low = arg5Int & 0xff;
@@ -1150,7 +1126,5 @@ namespace qdee {
     export function qdee_clearLight() {
         lhRGBLight.clear();
     }
-
-    
 
 }
