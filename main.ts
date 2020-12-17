@@ -316,31 +316,6 @@ namespace qdee {
         control.waitMicros(100);
     }
    
-    /**
-	 * Initialize Light belt
-	 */
-    //% weight=98 blockId=qdee_belt_initRGBLight block="Initialize light belt at port %port"
-    //% subcategory=Init
-    export function qdee_belt_initRGBLight(port: lightbeltPort) {
-        switch (port) {
-            case lightbeltPort.port1:
-                if (!lhRGBLightBelt) {
-                    lhRGBLightBelt = QdeeRGBLight.create(DigitalPin.P1, 30, QdeeRGBPixelMode.RGB);
-                }
-                break;
-            case lightbeltPort.port2:
-                if (!lhRGBLightBelt) {
-                    lhRGBLightBelt = QdeeRGBLight.create(DigitalPin.P13, 30, QdeeRGBPixelMode.RGB);
-                }
-                break;
-            case lightbeltPort.port3:
-                if (!lhRGBLightBelt) {
-                    lhRGBLightBelt = QdeeRGBLight.create(DigitalPin.P16, 30, QdeeRGBPixelMode.RGB);
-                }
-                break;
-        }
-        qdee_clearLight();
-    }
 
     function sendVersionCmd() {
         let buf = pins.createBuffer(4);
@@ -1831,21 +1806,5 @@ namespace qdee {
         lhRGBLightBelt.singleSetBeltPixelColor(lightoffset, rgb);
     }
     
-    /**
-     * Display the colored lights, and set the color of the colored lights to match the use. After setting the color of the colored lights, the color of the lights must be displayed.
-     */
-    //% weight=12 blockId=qdee_belt_showLight block="Show light belt"
-    //% subcategory=Coloured_lights    
-    export function qdee_belt_showLight() {
-        lhRGBLightBelt.show();
-    }
 
-    /**
-     * Clear the color of the colored lights and turn off the lights.
-     */
-    //% weight=10 blockGap=50 blockId=qdee_belt_clearLight block="Clear light belt"
-    //% subcategory=Coloured_lights    
-    export function qdee_belt_clearLight() {
-        lhRGBLightBelt.clear();
-    }
 }
