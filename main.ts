@@ -946,17 +946,6 @@ namespace qdee {
     }
 
     /**
-     * Do someting when remote-control stop send
-     * @param code the ir key button that needs to be pressed
-     * @param body code to run when event is raised
-     */
-    //% weight=76 blockId=onQdee_remote_no_ir block="on remote-control stop send"
-    //% subcategory=IR    
-    export function onQdee_remote_no_ir(body: Action) {
-        control.onEvent(MESSAGE_HEAD_STOP, 0, body);
-    }
-
-    /**
     * Let Qdee send ir remote-control data
     */
     //% weight=74 blockId=qdee_send_remote_data block="Let Qdee send ir remote-control|key %irKey|"
