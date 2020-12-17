@@ -331,7 +331,6 @@ namespace qdee {
     let currentVoltage: number = 0;
     let volume: number = 0;
     let lhRGBLight: QdeeRGBLight.LHQdeeRGBLight;
-    let lhRGBLightBelt: QdeeRGBLight.LHQdeeRGBLight;
 
     let PA6 = 2;
     let PA7 = 2;
