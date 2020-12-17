@@ -92,8 +92,6 @@ namespace qdee {
         port10 = 0x0A
     }
 
-
-
     export enum lineFollowPort {
         //% block="Port 1"
         port1 = 0x01
@@ -296,6 +294,19 @@ namespace qdee {
     let currentVoltage: number = 0;
     let volume: number = 0;
     let lhRGBLight: QdeeRGBLight.LHQdeeRGBLight;
+
+    let PA6 = 2;
+    let PA7 = 2;
+    let PB0 = 2;
+    let PB1 = 2;
+    let PB10 = 2;
+    let PB11 = 2;
+    let PC13 = 2;
+
+    let PA6_ad = 0;
+    let PA7_ad = 0;
+    let PB0_ad = 0;
+    let PB1_ad = 0;
 
     let MESSAGE_HEAD = 0xff;
 
