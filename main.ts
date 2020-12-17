@@ -305,16 +305,6 @@ namespace qdee {
         initExtPins();
     }
 
-    /**
-     * Initialize the color sensor,please execute at boot time
-     */
-    //% weight=99 blockId=qdee_init_colorSensor block="Initialize color sensor port at %port"
-    //% subcategory=Init
-    export function qdee_init_colorSensor(port: colorSensorPort) {
-        InitColor();
-        enableLightSensor(true);
-        control.waitMicros(100);
-    }
    
 
     function sendVersionCmd() {
